@@ -1,15 +1,18 @@
-import sys
+import argparse
 from .reader import read_document
 
 def main():
+    parser = argparse.ArgumentParser(description="Document Intelligence CLI - Extract information from text documents.")
+    parser.add_argument("file_path", help="Path to the document file")
+    args = parser.parse_args()
+
     try:
-        file_path = sys.argv[1]
-        content = read_document(file_path)
+        content = read_document(args.file_path)
         if not content:
-            print("File is empty")
+            print("\033[33mFile is empty\033[0m")
+
         else:
             print(content)
+        
     except FileNotFoundError:
-        print("File does not exist")
-    except IndexError:
-        print("Please provide a file path as an argument")
+        print("\033[31mFile does not exist\033[0m")
