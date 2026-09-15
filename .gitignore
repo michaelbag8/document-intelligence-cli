@@ -1,3 +1,12 @@
+# Virtual environments
 .venv/
+
+# Python cache
 __pycache__/
-document_intelligence_cli.egg-info/
+*.py[cod]
+
+# Packaging
+*.egg-info/
+
+# Test/cache files
+.pytest_cache/
