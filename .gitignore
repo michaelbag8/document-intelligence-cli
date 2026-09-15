@@ -10,3 +10,6 @@ __pycache__/
 
 # Test/cache files
 .pytest_cache/
+
+# Linters
+.ruff_cache/
