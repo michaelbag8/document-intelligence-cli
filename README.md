@@ -10,11 +10,10 @@ A Python command-line tool for extracting and analyzing information from text do
 ## 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/michaelbag8/document-intelligence-cli
 cd document-intelligence-cli
 ```
 
-Replace `<repository-url>` with the URL of this repository.
 
 ## 2. Create a virtual environment
 
