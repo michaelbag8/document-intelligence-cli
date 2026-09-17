@@ -1,6 +1,7 @@
 import argparse
 
 from .reader import read_document
+from .processor import process_document
 
 YELLOW = "\033[33m"
 RED = "\033[31m"
@@ -14,12 +15,14 @@ def main():
     parser.add_argument("file_path", help="Path to the document file")
     args = parser.parse_args()
 
+
     try:
         content = read_document(args.file_path)
         if not content:
             print(f"{YELLOW}No content found. Nothing to analyze.{RESET}")
         else:
-            print(content)
+            data = process_document(content)
+            print(data)
 
     except FileNotFoundError:
         print(f"{RED}File does not exist{RESET}")
