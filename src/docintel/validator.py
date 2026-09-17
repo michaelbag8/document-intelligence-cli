@@ -1,5 +1,6 @@
 import re
 
+
 def is_valid_email(email):
     
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
@@ -28,15 +29,12 @@ def is_valid_phone_number(phone):
     if len(digits) > 15:
         return False
 
-    if digits.startswith("0"):
-        return False
-
-    return True 
+    return digits.startswith("0") is False
+     
 
 def is_valid_money(money):
     formats = r"\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?"
 
-    if not re.fullmatch(formats, money):
-        return False
+    return re.fullmatch(formats, money) is not None
 
-    return True
+

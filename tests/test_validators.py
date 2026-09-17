@@ -1,11 +1,11 @@
 from docintel.validator import (
     is_valid_email,
-    is_valid_phone_number,
-    is_valid_money
+    is_valid_money,
     #is_valid_date,
     #is_valid_ip_address,    
-    
+    is_valid_phone_number,
 )
+
 
 #Test for email validtion
 def test_valid_email():
