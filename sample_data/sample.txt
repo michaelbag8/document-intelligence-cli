@@ -1,1 +1,34 @@
-Hello, Welcome To Document Intelligence CLI
+DOCUMENT INTELLIGENCE TEST SAMPLE
+
+Company: Acme Technologies Ltd.
+Date: 17/09/2026
+
+Contact Information:
+Email: support@acme.com
+Email: admin@acme.com
+Phone: +2348012345678
+Phone: +2349076543210
+
+Payment Information:
+The first payment was $1,250.00.
+The second payment was $500.
+The total amount paid was $1,750.00.
+
+Website:
+https://www.acme.com
+https://www.acme.com/contact
+
+Social Media:
+#Technology
+#Python
+#AI
+@acmetech
+@michael
+
+Server Information:
+Server IP: 192.168.1.100
+
+Some invalid information:
+Email: bad@@example.com
+Phone: +12345abc890
+Amount: $12.345
