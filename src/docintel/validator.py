@@ -9,15 +9,34 @@ def is_valid_email(email):
 
     return re.match(pattern, email) is not None
 
+
 def is_valid_phone_number(phone):
-    pattern = r"\+?[1-9]\d{1,14}"
+    if not phone:
+        return False
 
-    return re.match(pattern, phone) is not None
+    if phone.startswith("+"):
+        digits = phone[1:]
+    else:
+        digits = phone
 
+    if not digits.isdigit():
+        return False
 
-# def is_valid_money():
-#     pass
-# def is_valid_date():
-#     pass
-# def is_valid_ip_address():
-#     pass
+    if len(digits) < 7:
+        return False
+
+    if len(digits) > 15:
+        return False
+
+    if digits.startswith("0"):
+        return False
+
+    return True 
+
+def is_valid_money(money):
+    formats = r"\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?"
+
+    if not re.fullmatch(formats, money):
+        return False
+
+    return True
