@@ -1,19 +1,23 @@
+import re
+
 def is_valid_email(email):
-    """
-    Validate an email address using a regular expression.
-
-    Args:
-        email (str): The email address to validate.
-
-    Returns:
-        bool: True if the email is valid, False otherwise.
-    """
-    import re
-
-    # Define a regular expression pattern for validating an email
+    
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
-    # Use re.match to check if the email matches the pattern
+    if ".." in email:
+        return False  
+
     return re.match(pattern, email) is not None
 
+def is_valid_phone_number(phone):
+    pattern = r"\+?[1-9]\d{1,14}"
 
+    return re.match(pattern, phone) is not None
+
+
+# def is_valid_money():
+#     pass
+# def is_valid_date():
+#     pass
+# def is_valid_ip_address():
+#     pass
