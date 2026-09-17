@@ -17,7 +17,7 @@ def extract_phone_numbers(text):
 
 
 def extract_money(text):
-    money_pattern = r"\$\d+(?:\.\d{2})?"
+    money_pattern = r"\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?(?!\d|,\d|\.\d)"
     return re.findall(money_pattern, text)
 
 
