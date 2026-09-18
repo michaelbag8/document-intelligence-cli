@@ -22,7 +22,7 @@ def extract_money(text):
 
 
 def extract_dates(text):
-    date_pattern = r"\b\d{1,2}/\d{1,2}/\d{2,4}\b"
+    date_pattern = r"\b\d{4}-\d{2}-\d{2}\b"
     return re.findall(date_pattern, text)
 
 
@@ -32,9 +32,8 @@ def extract_hashtags(text):
 
 
 def extract_mentions(text):
-    mention_pattern = r"@\w+"
+    mention_pattern = r"(?<![\w@])@\w+"
     return re.findall(mention_pattern, text)
-
 
 def extract_ip_addresses(text):
     ip_pattern = r"\b(?:\d{1,3}\.){3}\d{1,3}\b"

@@ -1,8 +1,11 @@
 import argparse
+import sys
 
 from .processor import process_document
 from .reader import read_document
 from .report import generate_report
+
+from importlib.metadata import version
 
 YELLOW = "\033[33m"
 RED = "\033[31m"
@@ -14,6 +17,13 @@ def main():
         description="Document Intelligence CLI - Extract information from text documents."
     )
     parser.add_argument("file_path", help="Path to the document file")
+    
+    parser.add_argument(
+    "--version",
+    action="version",
+    version=f"Document Intelligence CLI version {version('document-intelligence-cli')}",
+    help="Show the version of the Document Intelligence CLI",
+    )
     args = parser.parse_args()
 
 
@@ -28,6 +38,7 @@ def main():
 
     except FileNotFoundError:
         print(f"{RED}File does not exist{RESET}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
