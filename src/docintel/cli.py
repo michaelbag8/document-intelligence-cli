@@ -1,7 +1,8 @@
 import argparse
 
-from .reader import read_document
 from .processor import process_document
+from .reader import read_document
+from .report import generate_report
 
 YELLOW = "\033[33m"
 RED = "\033[31m"
@@ -22,7 +23,8 @@ def main():
             print(f"{YELLOW}No content found. Nothing to analyze.{RESET}")
         else:
             data = process_document(content)
-            print(data)
+            report = generate_report(data)
+            print(report)
 
     except FileNotFoundError:
         print(f"{RED}File does not exist{RESET}")
