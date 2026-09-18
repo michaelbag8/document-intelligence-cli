@@ -1,4 +1,5 @@
 import re
+from datetime import datetime 
 
 
 def is_valid_email(email):
@@ -38,13 +39,18 @@ def is_valid_money(money):
     return re.fullmatch(formats, money) is not None
 
 def is_valid_url(url):
-    pattern = r'^(https?://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(/[\w-]*)*/?$'
+    pattern = r'^https?://(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(/[\w-]*)*/?$'
     return re.match(pattern, url) is not None
 
-
 def is_valid_date(date):
-    pattern = r'^\d{4}-\d{2}-\d{2}$'
-    return re.match(pattern, date) is not None
+    pattern = r"^\d{4}-\d{2}-\d{2}$"
+    if re.match(pattern, date) is None:
+        return False
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
 
 def is_valid_hashtag(hashtag):
     pattern = r'^#[a-zA-Z0-9_]+$'
