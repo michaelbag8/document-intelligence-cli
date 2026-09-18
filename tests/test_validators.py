@@ -1,4 +1,4 @@
-from docintel.validator import (
+from docintel.validators import (
     is_valid_email,
     is_valid_money,
     is_valid_date,
@@ -7,8 +7,7 @@ from docintel.validator import (
     is_valid_url
 )
 
-
-#Test for email validtion
+# Test for email validation
 def test_valid_email():
     assert is_valid_email("support@example.com") is True
 

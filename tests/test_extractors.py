@@ -123,12 +123,16 @@ def test_extract_money_with_no_numbers():
 
 # Test for date extraction
 def test_extract_dates():
-    result = extract_dates("Important dates are 12/01/2020 and 01/12/2020")
-    assert result == ["12/01/2020", "01/12/2020"]
+    result = extract_dates(
+        "Important dates are 2020-01-12 and 2020-12-01"
+    )
+    assert result == ["2020-01-12", "2020-12-01"]
+
 
 def test_extract_single_date():
-    result = extract_dates("The event is on 12/01/2020")
-    assert result == ["12/01/2020"]
+    result = extract_dates("The event is on 2020-01-12")
+    assert result == ["2020-01-12"]
+
 
 def test_extract_no_dates():
     result = extract_dates("There are no dates here")
