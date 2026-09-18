@@ -37,4 +37,33 @@ def is_valid_money(money):
 
     return re.fullmatch(formats, money) is not None
 
+def is_valid_url(url):
+    pattern = r'^(https?://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(/[\w-]*)*/?$'
+    return re.match(pattern, url) is not None
+
+
+def is_valid_date(date):
+    pattern = r'^\d{4}-\d{2}-\d{2}$'
+    return re.match(pattern, date) is not None
+
+def is_valid_hashtag(hashtag):
+    pattern = r'^#[a-zA-Z0-9_]+$'
+    return re.match(pattern, hashtag) is not None
+
+def is_valid_mention(mention):
+    pattern = r'^@[a-zA-Z0-9_]+$'
+    return re.match(pattern, mention) is not None
+
+def is_valid_ip_address(ip):
+    pattern = r'^(?:\d{1,3}\.){3}\d{1,3}$'
+    if not re.match(pattern, ip):
+        return False
+
+    parts = ip.split('.')
+    for part in parts:
+        if not 0 <= int(part) <= 255:
+            return False
+
+    return True 
+
 
