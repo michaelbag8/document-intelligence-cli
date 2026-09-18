@@ -1,34 +1,127 @@
-DOCUMENT INTELLIGENCE TEST SAMPLE
+DOCUMENT INTELLIGENCE TEST DOCUMENT
 
 Company: Acme Technologies Ltd.
-Date: 17/09/2026
+Report Date: 2026-09-17
 
-Contact Information:
-Email: support@acme.com
-Email: admin@acme.com
-Phone: +2348012345678
-Phone: +2349076543210
+========================================
+CONTACT INFORMATION
+========================================
 
-Payment Information:
+Email Addresses:
+support@acme.com
+admin@acme.com
+sales.team@example.org
+developer+test@example.co.uk
+
+Phone Numbers:
++2348012345678
++2349076543210
++1234567890
+
+Invalid Email:
+bad@@example.com
+
+Invalid Phone:
++12345abc890
+
+
+========================================
+PAYMENT INFORMATION
+========================================
+
 The first payment was $1,250.00.
 The second payment was $500.
-The total amount paid was $1,750.00.
+The third payment was $75.50.
+The total amount paid was $1,825.50.
 
-Website:
+Invalid amounts:
+$12.345
+$abc
+12.50
+
+
+========================================
+DATES
+========================================
+
+Valid Dates:
+2026-09-17
+2024-02-29
+2025-12-31
+
+Invalid Dates:
+2023-13-01
+2023-02-30
+2023-02-29
+
+
+========================================
+WEBSITES
+========================================
+
 https://www.acme.com
-https://www.acme.com/contact
+https://acme.com
+http://www.example.org
+https://www.example.com/products
+https://www.example.com/contact/support
 
-Social Media:
+Invalid URLs:
+www.acme.com
+acme.com
+ftp://example.com
+
+
+========================================
+SOCIAL MEDIA
+========================================
+
+Hashtags:
 #Technology
 #Python
-#AI
+#ArtificialIntelligence
+#DocumentIntelligence
+#Nigeria
+
+Mentions:
 @acmetech
 @michael
+@admin
+@python_dev
 
-Server Information:
-Server IP: 192.168.1.100
 
-Some invalid information:
-Email: bad@@example.com
-Phone: +12345abc890
-Amount: $12.345
+========================================
+SERVER INFORMATION
+========================================
+
+Valid IP Addresses:
+192.168.1.100
+10.0.0.1
+8.8.8.8
+127.0.0.1
+
+Potentially Invalid IP Addresses:
+999.999.999.999
+192.168.1.300
+
+
+========================================
+MIXED CONTENT
+========================================
+
+For technical support, contact support@acme.com
+or visit https://www.acme.com/support.
+
+Our office can be reached at +2348012345678.
+
+The project started on 2026-09-17 and the budget
+was $2,500.00.
+
+Follow our updates using #Python and #AI,
+or contact @acmetech on social media.
+
+Our internal server is available at 192.168.1.100.
+
+
+========================================
+END OF DOCUMENT
+========================================
