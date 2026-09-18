@@ -9,7 +9,7 @@ description = "A CLI tool for extracting structured information from text docume
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
-    { name = "Michael Bulus Gambo" }
+    { name = "Michael BAG", email= "michaelbag8@gmail.com" }
 ]
 license = { text = "MIT" }
 dependencies = []
