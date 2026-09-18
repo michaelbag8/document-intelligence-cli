@@ -2,7 +2,7 @@ import re
 from datetime import datetime 
 
 
-def is_valid_email(email):
+def is_valid_email(email: str) -> bool:
     
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
@@ -12,7 +12,7 @@ def is_valid_email(email):
     return re.match(pattern, email) is not None
 
 
-def is_valid_phone_number(phone):
+def is_valid_phone_number(phone: int) -> bool:
     if not phone:
         return False
 
@@ -33,16 +33,16 @@ def is_valid_phone_number(phone):
     return digits.startswith("0") is False
      
 
-def is_valid_money(money):
+def is_valid_money(money: str) -> bool:
     formats = r"\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?"
 
     return re.fullmatch(formats, money) is not None
 
-def is_valid_url(url):
+def is_valid_url(url: str) -> bool:
     pattern = r'^https?://(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(/[\w-]*)*/?$'
     return re.match(pattern, url) is not None
 
-def is_valid_date(date):
+def is_valid_date(date: str) -> bool:
     pattern = r"^\d{4}-\d{2}-\d{2}$"
     if re.match(pattern, date) is None:
         return False
@@ -52,15 +52,15 @@ def is_valid_date(date):
     except ValueError:
         return False
 
-def is_valid_hashtag(hashtag):
+def is_valid_hashtag(hashtag: str) -> bool:
     pattern = r'^#[a-zA-Z0-9_]+$'
     return re.match(pattern, hashtag) is not None
 
-def is_valid_mention(mention):
+def is_valid_mention(mention: str) -> bool:
     pattern = r'^@[a-zA-Z0-9_]+$'
     return re.match(pattern, mention) is not None
 
-def is_valid_ip_address(ip):
+def is_valid_ip_address(ip: str) -> bool:
     pattern = r'^(?:\d{1,3}\.){3}\d{1,3}$'
     if not re.match(pattern, ip):
         return False

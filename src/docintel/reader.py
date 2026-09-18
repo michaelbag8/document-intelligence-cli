@@ -1,4 +1,3 @@
 def read_document(file_path: str) -> str:
-    with open(file_path) as file:
-        content = file.read()
-    return content
+    with open(file_path, encoding="utf-8") as file:
+    return file.read()
