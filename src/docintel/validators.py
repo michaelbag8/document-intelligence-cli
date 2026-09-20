@@ -1,5 +1,5 @@
 import re
-from datetime import datetime 
+from datetime import datetime
 
 
 def is_valid_email(email: str) -> bool:
