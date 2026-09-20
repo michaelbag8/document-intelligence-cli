@@ -1,11 +1,10 @@
 import argparse
 import sys
+from importlib.metadata import version
 
 from .processor import process_document
 from .reader import read_document
 from .report import generate_report
-
-from importlib.metadata import version
 
 YELLOW = "\033[33m"
 RED = "\033[31m"
