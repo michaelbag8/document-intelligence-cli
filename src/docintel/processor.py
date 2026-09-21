@@ -6,6 +6,7 @@ from docintel.extractors import (
     extract_mentions,
     extract_money,
     extract_phone_numbers,
+    extract_urls,
 )
 from docintel.validators import (
     is_valid_date,
@@ -15,6 +16,7 @@ from docintel.validators import (
     is_valid_mention,
     is_valid_money,
     is_valid_phone_number,
+    is_valid_url,
 )
 
 
@@ -27,6 +29,7 @@ def process_document(text: str) -> dict[str, list[str]]:
         "hashtags": (extract_hashtags, is_valid_hashtag),
         "mentions": (extract_mentions, is_valid_mention),
         "ip_addresses": (extract_ip_addresses, is_valid_ip_address),
+        "url": (extract_url, is_valid_url)
     }
 
     result = {}
