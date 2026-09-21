@@ -71,28 +71,39 @@ def test_extract_url_with_query():
     result = extract_urls("Visit https://example.com/search?q=test")
     assert result == ["https://example.com/search?q=test"]
 
-
-# Test for phone number extraction
-def test_extract_phone_numbers():
-    result = extract_phone_numbers("Call us at +1234567890")
-    assert result == ["+1234567890"]
-
 def test_extract_multiple_phone_numbers():
-    result = extract_phone_numbers("Call us at +1234567890 or +0987654321")
-    assert result == ["+1234567890", "987654321"]
-
-def test_extract_phone_numbers_without_plus():
-    result = extract_phone_numbers("Call us at 1234567890")
-    assert result == ["1234567890"] 
-
-def test_extract_phone_numbers_with_country_code():
-    result = extract_phone_numbers("Call us at +12345678900")
-    assert result == ["+12345678900"]
+    result = extract_phone_numbers(
+        "Call us at +1234567890 or +2348012345678"
+    )
+    assert result == ["+1234567890", "+2348012345678"]
 
 def test_extract_no_phone_numbers():
     result = extract_phone_numbers("Talk to us on our office line")
     assert result == []
 
+def test_extract_phone_number_with_plus():
+    result = extract_phone_numbers("Call +2348012345678")
+    assert result == ["+2348012345678"]
+
+
+def test_extract_phone_number_without_plus():
+    result = extract_phone_numbers("Call 2348012345678")
+    assert result == ["2348012345678"]
+
+
+def test_extract_phone_number_does_not_extract_from_invalid_leading_zero():
+    result = extract_phone_numbers("Invalid number: +0987654321")
+    assert result == []
+
+def test_extract_phone_number_does_not_extract_substring():
+    result = extract_phone_numbers("Invalid number: 0987654321")
+    assert result == []
+
+def test_extract_phone_number_from_sentence():
+    result = extract_phone_numbers(
+        "Contact us at +2348012345678 for more information."
+    )
+    assert result == ["+2348012345678"]
 
 # Test for money extraction
 def test_extract_money():

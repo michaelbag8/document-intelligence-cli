@@ -12,7 +12,7 @@ def extract_urls(text: str) -> list[str]:
 
 
 def extract_phone_numbers(text: str) -> list[str]:
-    phone_pattern = r"\+?[1-9]\d{1,14}"
+    phone_pattern = r"(?<!\d)\+?[1-9]\d{1,14}(?!\d)"
     return re.findall(phone_pattern, text)
 
 
