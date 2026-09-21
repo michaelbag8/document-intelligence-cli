@@ -29,7 +29,7 @@ def process_document(text: str) -> dict[str, list[str]]:
         "hashtags": (extract_hashtags, is_valid_hashtag),
         "mentions": (extract_mentions, is_valid_mention),
         "ip_addresses": (extract_ip_addresses, is_valid_ip_address),
-        "url": (extract_url, is_valid_url)
+        "url": (extract_urls, is_valid_url)
     }
 
     result = {}
