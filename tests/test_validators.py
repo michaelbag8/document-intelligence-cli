@@ -103,6 +103,17 @@ def test_invalid_date_with_letters():
 def test_invalid_date_with_extra_characters():
     assert is_valid_date("2023-01-01T00:00:00") is False
 
+def test_invalid_date_february_30():
+    assert is_valid_date("2023-02-30") is False
+
+
+def test_invalid_date_february_29_non_leap_year():
+    assert is_valid_date("2023-02-29") is False
+
+
+def test_valid_date_february_29_leap_year():
+    assert is_valid_date("2024-02-29") is True
+
 
 #Test for IP address validation
 def test_valid_ip_address():
