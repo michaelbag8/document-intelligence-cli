@@ -17,7 +17,7 @@ def test_process_document():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -38,7 +38,7 @@ def test_process_document_with_invalid_values():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -55,7 +55,7 @@ def test_process_document_with_no_values():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -85,7 +85,7 @@ def test_process_document_with_multiple_values():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -105,7 +105,7 @@ def test_process_document_with_invalid_email():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -125,7 +125,7 @@ def test_process_document_with_invalid_phone_number():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -144,7 +144,7 @@ def test_process_document_with_invalid_money():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -167,7 +167,7 @@ def test_process_document_with_dates():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -187,7 +187,7 @@ def test_process_document_with_invalid_dates():
         "hashtags": [],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -211,7 +211,7 @@ def test_process_document_with_hashtags():
         ],
         "mentions": [],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -235,7 +235,7 @@ def test_process_document_with_mentions():
             "@python_dev",
         ],
         "ip_addresses": [],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -260,7 +260,7 @@ def test_process_document_with_ip_addresses():
             "10.0.0.1",
             "8.8.8.8",
         ],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -282,7 +282,7 @@ def test_process_document_with_invalid_ip_addresses():
         "ip_addresses": [
             "192.168.1.100",
         ],
-        "url": [],
+        "urls": [],
     }
 
 
@@ -307,14 +307,12 @@ def test_process_document_with_all_values():
         "hashtags": ["#Python", "#AI"],
         "mentions": ["@michael", "@admin"],
         "ip_addresses": ["192.168.1.100"],
-        "url": [],
+        "urls": [],
     }
 
-def test_process_document_with_url():
+def test_process_document_with_urls():
     text = """
-    Valid IP: 192.168.1.100.
-    Invalid IPs: 999.999.999.999 and 192.168.1.300.
-    Our url is https://example.com
+    Our urls is https://example.com
     """
 
     result = process_document(text)
@@ -326,8 +324,6 @@ def test_process_document_with_url():
         "dates": [],
         "hashtags": [],
         "mentions": [],
-        "ip_addresses": [
-            "192.168.1.100",
-        ],
-        "url": ["https://example.com"],
+        "ip_addresses": [],
+        "urls": ["https://example.com"],
     }
