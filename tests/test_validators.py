@@ -5,6 +5,8 @@ from docintel.validators import (
     is_valid_money,
     is_valid_phone_number,
     is_valid_url,
+    is_valid_hashtag,
+    is_valid_mention,
 )
 
 
@@ -33,6 +35,36 @@ def test_invalid_email_without_at_symbol():
 def test_invalid_email_with_double_dot():
     assert is_valid_email("hello@example..com") is False
 
+def test_valid_email_with_dot():
+    assert is_valid_email("first.last@example.com") is True
+
+
+def test_valid_email_with_hyphen():
+    assert is_valid_email("user-name@example.com") is True
+
+
+def test_invalid_email_without_local_part():
+    assert is_valid_email("@example.com") is False
+
+
+def test_invalid_email_without_tld():
+    assert is_valid_email("user@example") is False
+
+
+def test_invalid_email_with_space():
+    assert is_valid_email("user name@example.com") is False
+
+
+def test_invalid_email_with_space_in_domain():
+    assert is_valid_email("user@exam ple.com") is False
+
+
+def test_invalid_email_with_multiple_at_symbols():
+    assert is_valid_email("user@@example.com") is False
+
+
+def test_invalid_email_with_trailing_dot_in_domain():
+    assert is_valid_email("user@example.com.") is False
 
 # Test for phone number validation
 def test_valid_phone_number():
@@ -53,6 +85,29 @@ def test_invalid_phone_number_with_letters():
 
 def test_invalid_phone_number_with_spaces():
     assert is_valid_phone_number("+1 234 567 890") is False
+
+def test_invalid_phone_number_with_leading_zero():
+    assert is_valid_phone_number("0123456789") is False
+
+
+def test_invalid_phone_number_with_plus_and_leading_zero():
+    assert is_valid_phone_number("+0123456789") is False
+
+
+def test_invalid_phone_number_too_short():
+    assert is_valid_phone_number("123456") is False
+
+
+def test_invalid_phone_number_too_long():
+    assert is_valid_phone_number("1234567890123456") is False
+
+
+def test_valid_phone_number_with_exactly_7_digits():
+    assert is_valid_phone_number("1234567") is True
+
+
+def test_valid_phone_number_with_exactly_15_digits():
+    assert is_valid_phone_number("123456789012345") is True
 
 #Test for money validation      
 def test_valid_money_without_cents():
@@ -131,6 +186,25 @@ def test_invalid_ip_address_with_extra_octets():
 def test_invalid_ip_address_with_missing_octets():
     assert is_valid_ip_address("192.168.1") is False
 
+def test_valid_ip_address_with_leading_zeros():
+    assert is_valid_ip_address("192.168.01.01") is True
+
+
+def test_invalid_ip_address_with_empty_octet():
+    assert is_valid_ip_address("192..1.1") is False
+
+
+def test_invalid_ip_address_with_five_digit_octet():
+    assert is_valid_ip_address("192.168.0001.1") is False
+
+
+def test_invalid_ip_address_with_negative_octet():
+    assert is_valid_ip_address("192.168.-1.1") is False
+
+
+def test_invalid_ip_address_with_spaces():
+    assert is_valid_ip_address("192.168.1. 1") is False
+
 
 #Test for url validation
 def test_valid_url_without_www():
@@ -159,3 +233,49 @@ def test_valid_url_with_port():
 
 def test_valid_url_with_deep_path():
     assert is_valid_url("https://example.com/path/to/resource")
+
+def test_valid_hashtag_with_numbers():
+    assert is_valid_hashtag("#python2026") is True
+
+
+def test_valid_hashtag_with_underscore():
+    assert is_valid_hashtag("#python_ai") is True
+
+
+def test_invalid_hashtag_without_hash():
+    assert is_valid_hashtag("python") is False
+
+
+def test_invalid_hashtag_with_space():
+    assert is_valid_hashtag("#python ai") is False
+
+
+def test_invalid_hashtag_with_hyphen():
+    assert is_valid_hashtag("#python-ai") is False
+
+
+def test_invalid_empty_hashtag():
+    assert is_valid_hashtag("#") is False
+
+def test_valid_mention_with_numbers():
+    assert is_valid_mention("@user2026") is True
+
+
+def test_valid_mention_with_underscore():
+    assert is_valid_mention("@python_dev") is True
+
+
+def test_invalid_mention_without_at():
+    assert is_valid_mention("user") is False
+
+
+def test_invalid_mention_with_space():
+    assert is_valid_mention("@python dev") is False
+
+
+def test_invalid_mention_with_hyphen():
+    assert is_valid_mention("@python-dev") is False
+
+
+def test_invalid_empty_mention():
+    assert is_valid_mention("@") is False
