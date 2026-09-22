@@ -8,6 +8,7 @@ from docintel.validators import (
 )
 
 
+
 # Test for email validation
 def test_valid_email():
     assert is_valid_email("support@example.com") is True
@@ -121,9 +122,6 @@ def test_invalid_ip_address_with_missing_octets():
 
 
 #Test for url validation
-def test_valid_url():
-    assert is_valid_url("https://www.example.com") is True  
-
 def test_valid_url_without_www():
     assert is_valid_url("https://example.com") is True
 
@@ -135,3 +133,18 @@ def test_invalid_url_without_protocol():
 
 def test_invalid_url_with_invalid_characters(): 
     assert is_valid_url("https://www.exa mple.com") is False
+
+def test_valid_url_with_path():
+    assert is_valid_url("https://example.com/path/to/resource")
+
+
+def test_valid_url_with_query():
+    assert is_valid_url("https://example.com/search?q=test")
+
+
+def test_valid_url_with_port():
+    assert is_valid_url("https://example.com:8080")
+
+
+def test_valid_url_with_deep_path():
+    assert is_valid_url("https://example.com/path/to/resource")

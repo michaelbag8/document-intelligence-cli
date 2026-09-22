@@ -1,5 +1,6 @@
 import re
 from datetime import datetime
+from urllib.parse import urlparse
 
 
 def is_valid_email(email: str) -> bool:
@@ -38,9 +39,28 @@ def is_valid_money(money: str) -> bool:
 
     return re.fullmatch(formats, money) is not None
 
+
 def is_valid_url(url: str) -> bool:
-    pattern = r'^https?://(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(/[\w-]*)*/?$'
-    return re.match(pattern, url) is not None
+    parsed = urlparse(url)
+
+    if parsed.scheme not in {"http", "https"}:
+        return False
+
+    if not parsed.netloc:
+        return False
+
+    if any(char.isspace() for char in url):
+        return False
+
+    try:
+        hostname = parsed.hostname
+    except ValueError:
+        return False
+
+    if not hostname:
+        return False
+
+    return "." in hostname
 
 def is_valid_date(date: str) -> bool:
     pattern = r"^\d{4}-\d{2}-\d{2}$"
