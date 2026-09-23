@@ -1,4 +1,4 @@
-def generate_report(result):
+def generate_report(result: dict[str, list[str]]) -> str:
     report = "Document Intelligence Report\n"
     report += "===========================\n\n"
 

@@ -6,39 +6,40 @@ from .processor import process_document
 from .reader import read_document
 from .report import generate_report
 
-YELLOW = "\033[33m"
-RED = "\033[31m"
-RESET = "\033[0m"
 
-
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Document Intelligence CLI - Extract information from text documents."
     )
-    parser.add_argument("file_path", help="Path to the document file")
-    
-    parser.add_argument(
-    "--version",
-    action="version",
-    version=f"Document Intelligence CLI version {version('document-intelligence-cli')}",
-    help="Show the version of the Document Intelligence CLI",
-    )
-    args = parser.parse_args()
 
+    parser.add_argument(
+        "file_path",
+        help="Path to the document file"
+    )
+
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"Document Intelligence CLI version {version('document-intelligence-cli')}",
+        help="Show the version of the Document Intelligence CLI",
+    )
+
+    args = parser.parse_args()
 
     try:
         content = read_document(args.file_path)
+
         if not content:
-            print(f"{YELLOW}No content found. Nothing to analyze.{RESET}")
+            print(f"No content found. Nothing to analyze.")
         else:
             data = process_document(content)
             report = generate_report(data)
             print(report)
 
     except FileNotFoundError:
-        print(f"{RED}File does not exist{RESET}")
+        print(f"File does not exist")
         sys.exit(1)
 
-
-if __name__ == "__main__":
-    main()
+    except PermissionError:
+        print(f"Permission denied: cannot read file")
+        sys.exit(1)
