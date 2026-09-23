@@ -124,3 +124,39 @@ def test_generate_report_with_mixed_values():
     assert "support@acme.com" in report
     assert "+2348012345678" in report
     assert "$1,250.00" in report
+
+def test_generate_report_with_urls():
+    result = {
+        "urls": [
+            "https://example.com",
+            "https://example.com/docs",
+        ]
+    }
+
+    report = generate_report(result)
+
+    assert "URLs:" in report
+    assert "https://example.com" in report
+    assert "https://example.com/docs" in report
+
+
+def test_generate_report_strips_value_whitespace():
+    result = {
+        "emails": ["   support@acme.com   "],
+    }
+
+    report = generate_report(result)
+
+    assert "  - support@acme.com" in report
+    assert "  -    support@acme.com" not in report
+
+
+def test_generate_report_skips_none_values():
+    result = {
+        "emails": ["support@acme.com", None],
+    }
+
+    report = generate_report(result)
+
+    assert "support@acme.com" in report
+    assert "- None" not in report

@@ -1,5 +1,5 @@
 import subprocess
-
+import pytest
 
 def test_cli_valid_document():
     result = subprocess.run(
@@ -91,3 +91,21 @@ def test_cli_invalid_file_format():
 
     assert result.returncode != 0
     assert "File does not exist" in result.stdout
+
+def test_cli_permission_error(monkeypatch):
+    def mock_read_document(file_path):
+        raise PermissionError
+
+    monkeypatch.setattr("docintel.cli.read_document", mock_read_document)
+
+    from docintel.cli import main
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["docintel", "sample_data/sample.txt"],
+    )
+
+    with pytest.raises(SystemExit) as exc_info:
+        main()
+
+    assert exc_info.value.code == 1
