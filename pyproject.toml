@@ -12,7 +12,10 @@ authors = [
     { name = "Michael BAG", email= "michaelbag8@gmail.com" }
 ]
 license = { text = "MIT" }
-dependencies = []
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+]
 
 [project.scripts]
 docintel = "docintel.cli:main"

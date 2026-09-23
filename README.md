@@ -87,16 +87,9 @@ You should see `(.venv)` at the beginning of your terminal prompt.
 ### 4. Install the project
 
 ```bash
-python -m pip install -e .
+python -m pip install -e ".[dev]"
 ```
-
-The `-e` option installs the project in editable mode. Changes made to the source code are therefore available without reinstalling the package.
-
-### 5. Install the testing dependency
-
-```bash
-python -m pip install pytest
-```
+The -e option installs the project in editable mode, while [dev] installs development tools such as pytest
 
 ## Usage
 
