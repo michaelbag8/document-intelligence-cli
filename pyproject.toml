@@ -12,9 +12,13 @@ authors = [
     { name = "Michael BAG", email= "michaelbag8@gmail.com" }
 ]
 license = { text = "MIT" }
+
 [project.optional-dependencies]
 dev = [
     "pytest>=9.0",
+    "pytest-cov>=7.0",
+    "ruff>=0.13",
+    "mypy>=1.18",
 ]
 
 [project.scripts]
@@ -25,3 +29,21 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
