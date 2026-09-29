@@ -30,16 +30,16 @@ def main() -> None:
         content = read_document(args.file_path)
 
         if not content:
-            print(f"No content found. Nothing to analyze.")
+            print("No content found. Nothing to analyze.")
         else:
             data = process_document(content)
             report = generate_report(data)
             print(report)
 
     except FileNotFoundError:
-        print(f"File does not exist")
+        print("File does not exist")
         sys.exit(1)
 
     except PermissionError:
-        print(f"Permission denied: cannot read file")
+        print("Permission denied: cannot read file")
         sys.exit(1)
