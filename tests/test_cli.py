@@ -1,5 +1,7 @@
 import subprocess
+
 import pytest
+
 
 def test_cli_valid_document():
     result = subprocess.run(
