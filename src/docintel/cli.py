@@ -9,7 +9,9 @@ from .report import generate_report
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Document Intelligence CLI - Extract information from text documents."
+        description=(
+            "Document Intelligence CLI - Extract information from text documents."
+        )
     )
 
     parser.add_argument(
@@ -20,7 +22,10 @@ def main() -> None:
     parser.add_argument(
         "--version",
         action="version",
-        version=f"Document Intelligence CLI version {version('document-intelligence-cli')}",
+        version=(
+            f"Document Intelligence CLI version "
+            f"{version('document-intelligence-cli')}"
+        ),
         help="Show the version of the Document Intelligence CLI",
     )
 

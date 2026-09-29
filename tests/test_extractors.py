@@ -13,7 +13,9 @@ from docintel.extractors import (
 
 # Test for email extraction
 def test_extract_multiple_emails():
-    result = extract_emails("Contact us at support@example.com and also at michaelbag8@gmail.com")
+    result = extract_emails(
+        "Contact us at support@example.com and also at michaelbag8@gmail.com"
+    )
     assert result == ["support@example.com", "michaelbag8@gmail.com"]
 
 def test_extract_single_email():
@@ -27,7 +29,10 @@ def test_extract_plus_email():
 
 
 def test_extract_no_email():
-    result = extract_emails("Contact us at no 2 Ebije street otukpo, Benin city, Edo state. You can also reach us at")
+    result = extract_emails(
+        "Contact us at no 2 Ebije street otukpo, Benin city, Edo state. "
+        "You can also reach us at"
+    )
     assert result == []
 
 def test_extract_invalid_email():
@@ -150,7 +155,9 @@ def test_extract_no_dates():
     assert result == []
 
 def test_extract_invalid_dates():
-    result = extract_dates("Invalid dates like 32nd January 2020 should not be extracted")
+    result = extract_dates(
+        "Invalid dates like 32nd January 2020 should not be extracted"
+    )
     assert result == []
 
 # Test for hashtag extraction
@@ -209,7 +216,9 @@ def test_extract_no_ip_addresses():
     assert result == []     
 
 def test_extract_invalid_ip_addresses():
-    result = extract_ip_addresses("Invalid IPs like 999.999.999.999 should not be extracted")
+    result = extract_ip_addresses(
+        "Invalid IPs like 999.999.999.999 should not be extracted"
+    )
     assert result == ["999.999.999.999"]
 
 def test_extract_ip_addresses_with_leading_zeros():
