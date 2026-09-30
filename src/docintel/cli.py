@@ -1,3 +1,4 @@
+
 import argparse
 import sys
 from importlib.metadata import version
@@ -16,7 +17,7 @@ def main() -> None:
 
     parser.add_argument(
         "file_path",
-        help="Path to the document file"
+        help="Path to the document file",
     )
 
     parser.add_argument(
@@ -42,9 +43,36 @@ def main() -> None:
             print(report)
 
     except FileNotFoundError:
-        print("File does not exist")
+        print(
+            f"File does not exist: {args.file_path}",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     except PermissionError:
-        print("Permission denied: cannot read file")
+        print(
+            f"Permission denied: cannot read file: {args.file_path}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    except IsADirectoryError:
+        print(
+            f"Expected a file, but received a directory: {args.file_path}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    except UnicodeDecodeError:
+        print(
+            f"File is not valid UTF-8 text: {args.file_path}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    except OSError as error:
+        print(
+            f"Unable to read file '{args.file_path}': {error}",
+            file=sys.stderr,
+        )
         sys.exit(1)
