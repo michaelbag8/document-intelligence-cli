@@ -32,17 +32,12 @@ The current document-processing pipeline supports:
 | Hashtag | `#Python` |
 | Mention | `@michael` |
 | IP address | `192.168.1.1` |
+| URL | `https://example.com` |
 
 The application uses two stages for most extraction types:
 
 1. **Extraction** identifies candidate values in the document.
 2. **Validation** determines whether the candidates satisfy the project's validation rules.
-
-### URL Support
-
-The codebase currently contains URL extraction and URL validation functions.
-
-However, URLs are **not currently connected to the main document-processing pipeline**. Therefore, URLs are not included in the final CLI report.
 
 ## Requirements
 
@@ -89,7 +84,7 @@ You should see `(.venv)` at the beginning of your terminal prompt.
 ```bash
 python -m pip install -e ".[dev]"
 ```
-The -e option installs the project in editable mode, while [dev] installs development tools such as pytest
+The `-e` option installs the project in editable mode, while `[dev]` installs the development tools used by the project.
 
 ## Usage
 
@@ -213,7 +208,7 @@ Hashtags:
 Mentions:
   - @michael
 
-Ip Addresses:
+IP Addresses:
   - 192.168.1.1
 ```
 
@@ -274,6 +269,7 @@ document-intelligence-cli/
 │
 ├── src/
 │   └── docintel/
+│       ├── __init__.py
 │       ├── cli.py
 │       ├── extractors.py
 │       ├── __main__.py
@@ -286,6 +282,7 @@ document-intelligence-cli/
     ├── test_cli.py
     ├── test_extractors.py
     ├── test_processor.py
+    ├── test_reader.py
     ├── test_report.py
     └── test_validators.py
 ```
@@ -357,6 +354,8 @@ The test suite covers:
 * Hashtag extraction
 * Mention extraction
 * IP address extraction and validation
+* URL extraction and validation
+* Document reading
 * Document processing
 * Report generation
 * Empty documents
@@ -388,8 +387,7 @@ cd document-intelligence-cli
 python3 -m venv .venv
 source .venv/bin/activate
 
-python -m pip install -e .
-python -m pip install pytest
+python -m pip install -e ".[dev]"
 ```
 
 ### Run the Application
@@ -437,8 +435,8 @@ Current limitations include:
 * Dates use the `YYYY-MM-DD` format.
 * IP addresses are extracted as candidates and then validated as IPv4 addresses.
 * Hashtags and mentions follow the project's current regular-expression rules.
-* URL extraction and validation exist in the codebase but are not currently part of the main processing pipeline.
-* The application currently processes text documents.
+* URL extraction and validation follow the project's current URL rules.
+* The application currently processes readable UTF-8 text documents.
 * PDF and Microsoft Word documents are not currently supported.
 * The application does not determine whether an extracted email address, URL, phone number, or IP address actually exists or is reachable.
 
@@ -446,16 +444,14 @@ Current limitations include:
 
 Possible future improvements include:
 
-* Connect URL extraction to the main processing pipeline
 * Support additional date formats
 * Improve phone number handling
 * Support additional currencies
 * Support additional document formats
 * Add configurable extraction rules
 * Add JSON output
-* Improve CLI error handling
-* Add code coverage reporting
-* Add linting and formatting checks
+* Improve report customization
+* Add more comprehensive end-to-end CLI tests
 
 ## Returning to the Project
 
@@ -483,5 +479,3 @@ python -m pip install -e .
 ## License
 
 This project is licensed under the MIT License.
-
-See the `LICENSE` file for the complete license text.
