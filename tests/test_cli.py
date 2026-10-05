@@ -1,5 +1,7 @@
 import subprocess
 
+import sys
+
 import pytest
 
 
@@ -76,23 +78,43 @@ def test_cli_empty_file():
 
 def test_cli_missing_file():
     result = subprocess.run(
-        ["python", "-m", "docintel", "sample_data/non_existent.txt"],
+        [
+            sys.executable,
+            "-m",
+            "docintel",
+            "sample_data/non_existent.txt",
+        ],
         capture_output=True,
-        text=True
+        text=True,
     )
 
-    assert result.returncode != 0
-    assert "File does not exist" in result.stdout   
+    assert result.returncode == 1
+    assert "File does not exist" in result.stderr
+    assert result.stdout == ""
+   
 
-def test_cli_invalid_file_format():
+def test_cli_accepts_utf8_file_with_non_txt_extension(tmp_path):
+    document = tmp_path / "sample.pdf"
+    document.write_text(
+        "Contact support@acme.com",
+        encoding="utf-8",
+    )
+
     result = subprocess.run(
-        ["python", "-m", "docintel", "sample_data/sample.pdf"],
+        [
+            sys.executable,
+            "-m",
+            "docintel",
+            str(document),
+        ],
         capture_output=True,
-        text=True
+        text=True,
     )
 
-    assert result.returncode != 0
-    assert "File does not exist" in result.stdout
+    assert result.returncode == 0
+    assert "support@acme.com" in result.stdout
+    assert result.stderr == ""
+
 
 def test_cli_permission_error(monkeypatch):
     def mock_read_document(file_path):
