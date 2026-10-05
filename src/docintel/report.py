@@ -1,6 +1,5 @@
-
 def generate_report(
-    result: dict[str, list[str | None] | None],
+    result: dict[str, list[str]],
 ) -> str:
     display_names = {
         "emails": "Emails",

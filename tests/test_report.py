@@ -21,6 +21,7 @@ def test_generate_report():
     assert "$1,250.00" in report
     assert "$500" in report
 
+
 def test_generate_report_empty():
     result = {}
 
@@ -29,6 +30,7 @@ def test_generate_report_empty():
     assert "Document Intelligence Report" in report
     assert "===========================" in report
     assert report.strip() == "Document Intelligence Report\n==========================="
+
 
 def test_generate_report_single_entry():
     result = {
@@ -71,6 +73,7 @@ def test_generate_report_with_special_characters():
     assert "$1,250.00" in report
     assert "$500" in report
 
+
 def test_generate_report_with_empty_values():
     result = {
         "emails": [],
@@ -86,7 +89,8 @@ def test_generate_report_with_empty_values():
     assert "Phone Numbers:" in report
     assert "Money:" in report
 
-    assert "- None" not in report  # Ensure no empty values are displayed   
+    assert "- None" not in report  # Ensure no empty values are displayed
+
 
 def test_generate_report_with_none_values():
     result = {
@@ -103,7 +107,7 @@ def test_generate_report_with_none_values():
     assert "Phone Numbers:" in report
     assert "Money:" in report
 
-    assert "- None" not in report  # Ensure no empty values are displayed   
+    assert "- None" not in report  # Ensure no empty values are displayed
 
 
 def test_generate_report_with_mixed_values():
@@ -124,6 +128,7 @@ def test_generate_report_with_mixed_values():
     assert "support@acme.com" in report
     assert "+2348012345678" in report
     assert "$1,250.00" in report
+
 
 def test_generate_report_with_urls():
     result = {

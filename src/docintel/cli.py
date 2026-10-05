@@ -1,4 +1,3 @@
-
 import argparse
 import sys
 from importlib.metadata import version
@@ -24,8 +23,7 @@ def main() -> None:
         "--version",
         action="version",
         version=(
-            f"Document Intelligence CLI version "
-            f"{version('document-intelligence-cli')}"
+            f"Document Intelligence CLI version {version('document-intelligence-cli')}"
         ),
         help="Show the version of the Document Intelligence CLI",
     )

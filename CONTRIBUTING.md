@@ -198,15 +198,13 @@ Test names should clearly describe the behavior being tested.
 Prefer:
 
 ```python
-def test_invalid_email_without_domain():
-    ...
+def test_invalid_email_without_domain(): ...
 ```
 
 over:
 
 ```python
-def test_email():
-    ...
+def test_email(): ...
 ```
 
 A developer should be able to understand what a test verifies from its name.

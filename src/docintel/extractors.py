@@ -35,6 +35,7 @@ def extract_mentions(text: str) -> list[str]:
     mention_pattern = r"(?<![\w@])@\w+"
     return re.findall(mention_pattern, text)
 
+
 def extract_ip_addresses(text: str) -> list[str]:
     ip_pattern = r"\b(?:\d{1,3}\.){3}\d{1,3}\b"
     return re.findall(ip_pattern, text)

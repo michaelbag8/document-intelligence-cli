@@ -310,6 +310,7 @@ def test_process_document_with_all_values():
         "urls": [],
     }
 
+
 def test_process_document_with_urls():
     text = """
     Our urls is https://example.com
