@@ -39,24 +39,21 @@ Windows PowerShell:
 .venv\Scripts\Activate.ps1
 ```
 
-### 5. Install the Project
+```markdown
+### 5. Install the Project and Development Dependencies
 
-```bash
-python -m pip install -e .
+Install the project in editable mode together with all development tools:
 ```
 
-### 6. Install Development Dependencies
-
-The project currently uses `pytest` for testing.
-
 ```bash
-python -m pip install pytest
+python -m pip install -e ".[dev]"
 ```
 
 ## Project Structure
 
 ```text
 src/docintel/
+├── __init__.py
 ├── cli.py
 ├── extractors.py
 ├── __main__.py
@@ -69,6 +66,7 @@ tests/
 ├── test_cli.py
 ├── test_extractors.py
 ├── test_processor.py
+├── test_reader.py
 ├── test_report.py
 └── test_validators.py
 ```
@@ -121,7 +119,7 @@ Before making a change:
 4. Decide what behavior should change.
 5. Make the smallest reasonable change.
 6. Add or update tests.
-7. Run the complete test suite.
+7. Run the quality checks.
 8. Review the final changes.
 
 The general workflow is:
@@ -165,7 +163,7 @@ When adding a new extraction type:
 5. Add validator tests.
 6. Add processor tests.
 7. Update the README.
-8. Run the complete test suite.
+8. Run the complete quality checks.
 
 Do not describe an extraction type as a supported CLI feature until it is connected to the processing pipeline and appears in the final result.
 
@@ -332,12 +330,17 @@ changes
 
 A commit should communicate what changed.
 
+
+```markdown
 ## Pull Requests
 
-Before opening a pull request, run:
+Before opening a pull request, run all local quality checks:
 
 ```bash
-python -m pytest
+ruff check .
+ruff format --check .
+mypy src
+pytest --cov=src/docintel --cov-report=term-missing --cov-fail-under=80%
 ```
 
 Make sure that:
@@ -345,9 +348,15 @@ Make sure that:
 * Existing tests pass.
 * New functionality has appropriate tests.
 * Existing functionality has not been unintentionally changed.
+* Ruff checks pass.
+* Formatting checks pass.
+* mypy passes.
+* Coverage remains at or above the project's configured threshold.
 * Documentation has been updated when necessary.
 * The change has a clear purpose.
 * No unnecessary dependencies have been introduced.
+
+GitHub Actions also runs the project's automated checks across the supported Python versions.
 
 ### Pull Request Description
 
@@ -360,7 +369,7 @@ Explain:
 
 For example:
 
-```text
+
 ## What changed?
 
 Added validation for calendar dates.
@@ -378,10 +387,13 @@ Added tests for:
 - Invalid February dates
 - Invalid month values
 
+
 ## Verification
 
-python -m pytest
-```
+ruff check .
+ruff format --check .
+mypy src
+pytest --cov=src/docintel --cov-report=term-missing --cov-fail-under=80%
 
 ## Reporting Bugs
 
