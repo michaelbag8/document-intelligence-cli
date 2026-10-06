@@ -338,7 +338,7 @@ Before opening a pull request, run all local quality checks:
 ruff check .
 ruff format --check .
 mypy src
-pytest --cov=src/docintel --cov-report=term-missing --cov-fail-under=80%
+pytest --cov=src/docintel --cov-report=term-missing --cov-fail-under=80
 ```
 
 Make sure that:
@@ -387,12 +387,12 @@ Added tests for:
 
 
 ## Verification
-
+```bash
 ruff check .
 ruff format --check .
 mypy src
-pytest --cov=src/docintel --cov-report=term-missing --cov-fail-under=80%
-
+pytest --cov=src/docintel --cov-report=term-missing --cov-fail-under=80
+```
 ## Reporting Bugs
 
 When reporting a bug, include:

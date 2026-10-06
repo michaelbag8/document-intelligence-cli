@@ -9,9 +9,10 @@ from .report import generate_report
 
 def main() -> None:
     parser = argparse.ArgumentParser(
+        prog="docintel",
         description=(
             "Document Intelligence CLI - Extract information from text documents."
-        )
+        ),
     )
 
     parser.add_argument(
